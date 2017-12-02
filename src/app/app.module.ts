@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import {APP_ROUTES} from './app.route';
 import { HikingComponent } from './hiking/hiking.component';
+import { EditHikingComponent } from './edit-hiking/edit-hiking.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HikingComponent } from './hiking/hiking.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    HikingComponent
+    HikingComponent,
+    EditHikingComponent
   ],
   imports: [
     BrowserModule,

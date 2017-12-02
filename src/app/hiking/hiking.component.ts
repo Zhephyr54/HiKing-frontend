@@ -12,6 +12,9 @@ export class HikingComponent implements OnInit {
   // Property to store a hiking value
   private _hiking: Hiking;
 
+  // The number of remaining spot for this hiking
+  private _nbRemainingSpot: number;
+
   constructor() {
     // test
     const user: User = {
@@ -29,10 +32,13 @@ export class HikingComponent implements OnInit {
       complexity: 'Facile',
       description: 'On va s\'éclater ! Super rando en prévision :p.',
       personMinNumber: 5,
-      personMaxNumber: 10,
+      personMaxNumber: 3,
       persons: [user, user, user],
       price: 15
     };
+
+    this._nbRemainingSpot = this._hiking.personMaxNumber - this._hiking.persons.length;
+
   }
 
   ngOnInit() {
@@ -46,11 +52,15 @@ export class HikingComponent implements OnInit {
     this._hiking = value;
   }
 
+  get nbRemainingSpot(): number {
+    return this._nbRemainingSpot;
+  }
+
   /**
-   * Calculate the number of remaining spots for this hiking.
-   * @returns {number}
+   * Sign up the user to this hiking
+   * Refresh the hiking page after
    */
-  calculateNbRemainingSpots(): number {
-    return this._hiking.personMaxNumber - this._hiking.persons.length;
+  signUp() {
+    // TODO
   }
 }

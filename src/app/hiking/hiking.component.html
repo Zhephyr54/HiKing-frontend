@@ -41,12 +41,22 @@
   </tr>
   <tr>
     <th scope="row">Nombre de places restantes</th>
-    <td>{{calculateNbRemainingSpots()}}</td>
+    <td>{{nbRemainingSpot}}</td>
   </tr>
   <tr>
     <th scope="row">Prix de participation</th>
-    <td>{{hiking.price}} &euro</td>
+    <td>{{hiking.price}} &euro;</td>
   </tr>
   </tbody>
 </table>
 
+<div class="row text-center center-block">
+  <!-- if hiking is no full -->
+  <div *ngIf="nbRemainingSpot > 0">
+    <button (click)="signUp()" class="btn btn-primary">Participer</button>
+  </div>
+  <!-- else -->
+  <div *ngIf="nbRemainingSpot == 0">
+    <p>Cette randonnée est complète.</p>
+  </div>
+</div>
