@@ -32,7 +32,7 @@ export class HikingComponent implements OnInit {
       complexity: 'Facile',
       description: 'On va s\'éclater ! Super rando en prévision :p.',
       personMinNumber: 5,
-      personMaxNumber: 3,
+      personMaxNumber: 10,
       persons: [user, user, user],
       price: 15
     };
