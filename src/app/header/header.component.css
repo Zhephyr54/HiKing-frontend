@@ -1,0 +1,9 @@
+#header-logo {
+  background-image: url("../../assets/images/hiKing-logo-small.png");
+  background-size: 250px;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+  width: 300px;
+  height: 100px;
+}
