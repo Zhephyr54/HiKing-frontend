@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Hiking} from '../../interfaces/hiking';
-import {User} from '../../interfaces/user';
+import {Hiking} from '../shared/interfaces/hiking';
+import {User} from '../shared/interfaces/user';
 
 @Component({
   selector: 'app-hiking',
@@ -34,11 +34,14 @@ export class HikingComponent implements OnInit {
       personMinNumber: 5,
       personMaxNumber: 10,
       persons: [user, user, user],
+      priceType: 'Fixe',
       price: 15
     };
 
+    // calculating the number of remaining spots for this hiking
     this._nbRemainingSpot = this._hiking.personMaxNumber - this._hiking.persons.length;
-
+    // default photo if not specified
+    this._hiking.photo = this._hiking.photo ? this._hiking.photo : 'https://randomuser.me/api/portraits/lego/6.jpg';
   }
 
   ngOnInit() {
