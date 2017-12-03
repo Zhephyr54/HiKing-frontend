@@ -1,10 +1,14 @@
-<div class="jumbotron">
-  <div class="container">
-    <h1>HiKing !</h1>
-    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+<<div class="jumbotron">
+  <div class="container text-center">
+    <p>Professionnel ? Particulier ? Peu importe !<br>
+      Avec HiKing organisez les randonnées comme vous voulez<br>
+      et participez aux randonnées qui sont faites pour vous !
+    </p>
+    <br>
+    <h3>Rechercher la randonnée qui vous correspond !</h3>
     <app-form-search-hiking></app-form-search-hiking>
   </div>
 </div>
 <div class="row">
-      <app-card-hiking [hiking]="hiking" *ngFor="let hiking of hikings"></app-card-hiking>
-  </div>
+  <app-card-hiking [hiking]="hiking" *ngFor="let hiking of hikings"></app-card-hiking>
+</div>
