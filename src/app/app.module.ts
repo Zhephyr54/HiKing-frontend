@@ -7,11 +7,12 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import {APP_ROUTES} from './app.route';
+import { APP_ROUTES } from './app.route';
 import { HikingComponent } from './hiking/hiking.component';
 import { EditHikingComponent } from './edit-hiking/edit-hiking.component';
 import { CardHikingComponent } from './shared/card-hiking/card-hiking.component';
 import { FormSearchHikingComponent } from './shared/form-search-hiking/form-search-hiking.component';
+import { FormHikingComponent } from './shared/form-hiking/form-hiking.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormSearchHikingComponent } from './shared/form-search-hiking/form-sear
     HomeComponent,
     HikingComponent,
     EditHikingComponent,
+    FormHikingComponent,
     CardHikingComponent,
     FormSearchHikingComponent
   ],

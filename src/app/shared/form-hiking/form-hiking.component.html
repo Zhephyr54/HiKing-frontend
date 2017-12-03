@@ -1,0 +1,115 @@
+<h2 *ngIf="isUpdateMode">Modification d'une randonnée</h2>
+<h2 *ngIf="!isUpdateMode">Organisation d'une randonnée</h2>
+
+<form [formGroup]="form">
+  <div class="form-group">
+    <label class="control-label" for="title">Titre</label>
+    <input formControlName="title" type="text" class="form-control" id="title" placeholder="Super rando en montagne">
+  </div>
+
+  <div class="form-group">
+    <img width="100" src="{{ form.get('photo').value }}"/>
+    <input type="hidden" formControlName="photo" name="photo">
+  </div>
+
+  <div class="form-group required" [class.has-error]="form.get('startLocalization').touched && form.get('startLocalization').hasError('required')">
+    <label class="control-label" for="startLocalization">Point de départ</label>
+    <input formControlName="startLocalization" type="text" class="form-control" id="startLocalization" required>
+    <span class="help-block" *ngIf="form.get('startLocalization').touched && form.get('startLocalization').hasError('required')">
+      Le point de départ est <strong>requis</strong>
+    </span>
+  </div>
+
+  <div class="form-group required" [class.has-error]="form.get('endLocalization').touched && form.get('endLocalization').hasError('required')">
+    <label class="control-label" for="endLocalization">Point d'arrivée</label>
+    <input formControlName="endLocalization" type="text" class="form-control" id="endLocalization" required>
+    <span class="help-block" *ngIf="form.get('endLocalization').touched && form.get('endLocalization').hasError('required')">
+      Le point d'arrivée est <strong>requis</strong>
+    </span>
+  </div>
+
+  <div class="form-group required" [class.has-error]="form.get('duration').touched && (form.get('duration').hasError('required') || form.get('duration').hasError('min') || form.get('distance').hasError('pattern'))">
+    <label class="control-label" for="duration">Durée</label>
+    <input formControlName="duration" type="number" class="form-control" id="duration" required>
+    <span class="help-block" *ngIf="form.get('duration').touched && form.get('duration').hasError('required')">
+      La durée est <strong>requise</strong>
+    </span>
+    <span class="help-block" *ngIf="form.get('duration').touched && (form.get('duration').hasError('min') || form.get('duration').hasError('pattern'))">
+      La durée doit être un nombre entier positif non nul
+    </span>
+  </div>
+
+  <div class="form-group required" [class.has-error]="form.get('distance').touched && (form.get('distance').hasError('required') || form.get('distance').hasError('min')  || form.get('distance').hasError('pattern'))">
+    <label class="control-label" for="distance">Distance</label>
+    <input formControlName="distance" type="number" class="form-control" id="distance" required>
+    <span class="help-block" *ngIf="form.get('distance').touched && form.get('distance').hasError('required')">
+      La distance est <strong>requise</strong>
+    </span>
+    <span class="help-block" *ngIf="form.get('distance').touched && (form.get('distance').hasError('min') || form.get('distance').hasError('pattern'))">
+      La distance doit être un nombre entier positif non nul
+    </span>
+  </div>
+
+  <div class="form-group required" [class.has-error]="form.get('complexity').touched && form.get('complexity').hasError('required')">
+    <label class="control-label" for="complexity">Difficulté</label>
+    <select formControlName="complexity" class="form-control" id="complexity" required>
+      <option>Débutant</option>
+      <option>Confirmé</option>
+      <option>Expert</option>
+    </select>
+    <span class="help-block"*ngIf="form.get('complexity').touched && form.get('complexity').hasError('required')">
+      La difficulté est <strong>requise</strong>
+    </span>
+
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description et commentaires : </label>
+    <textarea formControlName="description" class="form-control" rows="5" id="description"></textarea>
+  </div>
+
+  <div class="form-group required" [class.has-error]="form.get('minPerson').touched && (form.get('minPerson').hasError('required') || form.get('minPerson').hasError('min')  || form.get('minPerson').hasError('pattern'))">
+    <label class="control-label" for="minPerson">Nombre minimum de personnes</label>
+    <input formControlName="minPerson" type="number" class="form-control" id="minPerson" required>
+    <span class="help-block" *ngIf="form.get('minPerson').touched && form.get('minPerson').hasError('required')">
+      Le nombre minimum de personnes est <strong>requis</strong>
+    </span>
+    <span class="help-block" *ngIf="form.get('minPerson').touched && (form.get('minPerson').hasError('min') || form.get('minPerson').hasError('pattern'))">
+      La nombre minimum de personnes doit être un nombre entier positif non nul
+    </span>
+  </div>
+
+  <div class="form-group required" [class.has-error]="form.get('maxPerson').touched && (form.get('maxPerson').hasError('required') || form.get('maxPerson').hasError('min')  || form.get('maxPerson').hasError('pattern'))">
+    <label class="control-label" for="maxPerson">Nombre maximum de personnes</label>
+    <input formControlName="maxPerson" type="number" class="form-control" id="maxPerson" required>
+    <span class="help-block" *ngIf="form.get('maxPerson').touched && form.get('maxPerson').hasError('required')">
+      Le nombre minimum de personnes est <strong>requis</strong>
+    </span>
+    <span class="help-block" *ngIf="form.get('maxPerson').touched && (form.get('maxPerson').hasError('min') || form.get('maxPerson').hasError('pattern'))">
+      La nombre minimum de personnes doit être un nombre entier positif non nul
+    </span>
+  </div>
+
+  <div class="form-group required" [class.has-error]="form.get('priceType').touched && form.get('priceType').hasError('required')">
+    <label class="control-label" for="priceType">Rémunération</label>
+    <select [(ngModel)]="priceType" formControlName="priceType" class="form-control" id="priceType" required>
+      <option value="free">Libre</option>
+      <option value="fixed">Fixe</option>
+    </select>
+    <span class="help-block" *ngIf="form.get('priceType').touched && form.get('priceType').hasError('required')">
+      La rémunération est <strong>requise</strong>
+    </span>
+  </div>
+
+  <!-- hide if the hiking pricing is set at free -->
+  <div class="form-group required" [class.has-error]="form.get('price').touched && form.get('price').hasError('priceConformToPriceType')"
+  *ngIf="priceType === 'fixed'">
+    <label class="control-label" for="price">Prix</label>
+    <input formControlName="price" type="number" class="form-control" id="price" required>
+    <span class="help-block" *ngIf="form.get('price').touched && form.get('price').hasError('priceConformToPriceType')">
+      Le prix est incorrect. Exemples de prix corrects : 10  5,5  3,55
+    </span>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Publier</button>
+</form>

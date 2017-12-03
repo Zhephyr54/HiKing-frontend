@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Hiking} from '../../interfaces/hiking';
-import {User} from '../../interfaces/user';
+import { Hiking } from '../shared/interfaces/hiking';
+import {User} from '../shared/interfaces/user';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
       personMinNumber: 5,
       personMaxNumber: 10,
       persons: [user, user, user],
+      priceType: 'Euro',
       price: 20
     },
       {
@@ -45,6 +46,7 @@ export class HomeComponent implements OnInit {
         personMinNumber: 5,
         personMaxNumber: 10,
         persons: [user, user, user],
+        priceType: 'Euro',
         price: 30
       }, {
         date: '03-12-17',
@@ -58,6 +60,7 @@ export class HomeComponent implements OnInit {
         personMinNumber: 5,
         personMaxNumber: 10,
         persons: [user, user, user],
+        priceType: 'Euro',
         price: 10
       }
     ];
