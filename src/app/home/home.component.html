@@ -1,3 +1,10 @@
-<p>
-  home works!
-</p>
+<div class="jumbotron">
+  <div class="container">
+    <h1>HiKing !</h1>
+    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <app-form-search-hiking></app-form-search-hiking>
+  </div>
+</div>
+<div class="row">
+      <app-card-hiking [hiking]="hiking" *ngFor="let hiking of hikings"></app-card-hiking>
+  </div>
