@@ -137,7 +137,9 @@ export class FormHikingComponent implements OnInit, OnChanges {
       ])),
       priceType: new FormControl('', Validators.required),
       price: new FormControl('')
-    });
+    }, Validators.compose([
+      CustomValidators.priceConformToPriceType, CustomValidators.personNumbersCoherent
+    ]));
   }
 
 }

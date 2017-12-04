@@ -10,7 +10,7 @@ export const environment = {
     host: '0.0.0.0',
     port: '9000',
     endpoints: {
-      oneHikings: '/api/hiking/:id',
+      oneHikings: '/api/hikings/:id',
       allHikings: '/api/hikings'
     }
   }

@@ -1,5 +1,4 @@
-import {FormControl, Validators} from '@angular/forms';
-import {isUndefined} from 'util';
+import {FormControl} from '@angular/forms';
 
 export class CustomValidators {
 
@@ -7,32 +6,31 @@ export class CustomValidators {
   // TODO Revoir le validateur custom
 
   /**
-   * Function to control the price
+   * Function to control that the price is conform to the priceType
    *
    * @param control
    *
-   * @returns {{googleEmail: boolean}}
+   * @returns {{priceConformToPriceType: boolean}}
    */
-  /*static priceConformToPriceType(control: FormControl) {
-    const group = control.parent;
-
+  static priceConformToPriceType(control: FormControl) {
     // price regex
     const regex = /^[1-9][0-9]*(,[0-9]{2})?$/
 
-    return isUndefined(group) || (group.controls['priceType'].value === 'fixed' && !regex.test(control.value))
-      ? { priceConformToPriceType: true } : null;
-  }*/
+    return control.value.priceType === 'Libre' || (control.value.priceType === 'Fixe' && regex.test(control.value.price)) ? null : {
+      priceConformToPriceType: true
+    };
+  }
 
-  static priceConformToPriceType = (priceType: string) => {
-    return (control: FormControl) => {
-      // price regex
-      const regex = /^[1-9][0-9]*(,[0-9]{2})?$/;
-
-      console.log(priceType);
-      return priceType !== 'fixed' || (priceType === 'fixed' && regex.test(control.value)) ?
-        { priceConformToPriceType: false } : {
-        priceConformToPriceType: true
-      };
+  /**
+   * Function to control that the maximum number of persons is superior or equal
+   * to the minimum number of persons
+   *
+   * @param {FormControl} control
+   * @returns {{personNumbersCoherent: boolean}}
+   */
+  static personNumbersCoherent(control: FormControl) {
+    return control.value.personMaxNumber >= control.value.personMinNumber ? null : {
+      personNumbersCoherent: true
     };
   }
 }
