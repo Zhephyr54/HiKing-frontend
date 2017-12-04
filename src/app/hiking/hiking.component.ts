@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Hiking} from '../shared/interfaces/hiking';
-import {User} from '../shared/interfaces/user';
+import {HikingService} from '../shared/hiking-service/hiking.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'app-hiking',
@@ -10,41 +14,23 @@ import {User} from '../shared/interfaces/user';
 export class HikingComponent implements OnInit {
 
   // Property to store a hiking value
-  private _hiking: Hiking;
+  private _hiking: Hiking ;
 
   // The number of remaining spot for this hiking
   private _nbRemainingSpot: number;
 
-  constructor() {
-    // test
-    const user: User = {
-      email: 'osef',
-      firstname: 'osef',
-      lastname: 'osef'
-    };
-    this._hiking = {
-      date: '02-08-17',
-      guide: user,
-      startLocalization: 'Nancy',
-      endLocalization: 'Nancy',
-      duration: '2h',
-      distance: 20,
-      complexity: 'Facile',
-      description: 'On va s\'éclater ! Super rando en prévision :p.',
-      personMinNumber: 5,
-      personMaxNumber: 10,
-      persons: [user, user, user],
-      priceType: 'Fixe',
-      price: 15
-    };
-
-    // calculating the number of remaining spots for this hiking
-    this._nbRemainingSpot = this._hiking.personMaxNumber - this._hiking.persons.length;
-    // default photo if not specified
-    this._hiking.photo = this._hiking.photo ? this._hiking.photo : 'https://randomuser.me/api/portraits/lego/6.jpg';
+  constructor(private _hikingService: HikingService, private _route: ActivatedRoute, private _router: Router) {
   }
 
   ngOnInit() {
+    this._route.params
+      .filter(params => !!params['id'])
+      .flatMap(params => this._hikingService.fetchOne(params['id']))
+      .subscribe((hiking: Hiking) => {
+        this._hiking = hiking;
+        // calculating the number of remaining spots for this hiking
+        this._nbRemainingSpot = this._hiking.personMaxNumber - this._hiking.persons.length;
+      });
   }
 
   get hiking(): any {

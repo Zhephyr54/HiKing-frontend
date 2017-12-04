@@ -1,68 +1,75 @@
-<img width="100" src="{{ hiking.photo }}"/>
+<div *ngIf="hiking">
 
-<div *ngIf="hiking.title">
-  <h2>{{hiking.title}}</h2>
-</div>
+  <img *ngIf="hiking.photo" width="300" src="{{ hiking.photo }}"/>
+  <img *ngIf="!hiking.photo" width="300" src="https://media.deseretdigital.com/file/2187773984?crop=top:0|left:0|width:940|height:500|gravity:Center&quality=55&interlace=none&resize=width:940&order=resize,crop&c=14&a=8e1c7dfe"/>
 
-<p>Le {{hiking.date}}</p>
 
-<p class="alert alert-success">Guide</p>
-
-<p class="alert alert-success">Itinéraire</p>
-
-<table class="table">
-  <tbody>
-  <tr>
-    <th scope="row">Lieu de départ</th>
-    <td>{{hiking.startLocalization}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Lieu d'arrivée</th>
-    <td>{{hiking.endLocalization}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Durée</th>
-    <td>{{hiking.duration}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Distance</th>
-    <td>{{hiking.distance}} km</td>
-  </tr>
-  <tr>
-    <th scope="row">Difficulté</th>
-    <td>{{hiking.complexity}}</td>
-  </tr>
-  </tbody>
-</table>
-
-<p>{{hiking.description}}</p>
-
-<p class="alert alert-success">Modalités</p>
-
-<table class="table">
-  <tbody>
-  <tr>
-    <th scope="row">Nombre de personnes</th>
-    <td>De {{hiking.personMinNumber}} à {{hiking.personMaxNumber}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Nombre de places restantes</th>
-    <td>{{nbRemainingSpot}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Prix de participation</th>
-    <td>{{hiking.price}} &euro;</td>
-  </tr>
-  </tbody>
-</table>
-
-<div class="row text-center center-block">
-  <!-- if hiking is no full -->
-  <div *ngIf="nbRemainingSpot > 0">
-    <button (click)="signUp()" class="btn btn-primary">Participer</button>
+  <div *ngIf="hiking.title">
+    <h2>{{hiking.title}}</h2>
   </div>
-  <!-- else -->
-  <div *ngIf="nbRemainingSpot == 0">
-    <p>Cette randonnée est complète.</p>
+
+  <p>Le {{hiking.date}}</p>
+
+  <p class="alert alert-success">Guide</p>
+
+  <app-card-user [user]="hiking.guide"></app-card-user>
+
+  <p class="alert alert-success">Itinéraire</p>
+
+  <table class="table">
+    <tbody>
+    <tr>
+      <th scope="row">Lieu de départ</th>
+      <td>{{hiking.startLocalization}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Lieu d'arrivée</th>
+      <td>{{hiking.endLocalization}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Durée</th>
+      <td>{{hiking.duration}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Distance</th>
+      <td>{{hiking.distance}} km</td>
+    </tr>
+    <tr>
+      <th scope="row">Difficulté</th>
+      <td>{{hiking.complexity}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <p>{{hiking.description}}</p>
+
+  <p class="alert alert-success">Modalités</p>
+
+  <table class="table">
+    <tbody>
+    <tr>
+      <th scope="row">Nombre de personnes</th>
+      <td>De {{hiking.personMinNumber}} à {{hiking.personMaxNumber}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Nombre de places restantes</th>
+      <td>{{nbRemainingSpot}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Prix de participation</th>
+      <td>{{hiking.price}} &euro;</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="row text-center center-block">
+    <!-- if hiking is no full -->
+    <div *ngIf="nbRemainingSpot > 0">
+      <button (click)="signUp()" class="btn btn-primary">Participer</button>
+    </div>
+    <!-- else -->
+    <div *ngIf="nbRemainingSpot == 0">
+      <p>Cette randonnée est complète.</p>
+    </div>
   </div>
 </div>

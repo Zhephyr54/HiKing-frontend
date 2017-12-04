@@ -13,6 +13,11 @@ import { EditHikingComponent } from './edit-hiking/edit-hiking.component';
 import { CardHikingComponent } from './shared/card-hiking/card-hiking.component';
 import { FormSearchHikingComponent } from './shared/form-search-hiking/form-search-hiking.component';
 import { FormHikingComponent } from './shared/form-hiking/form-hiking.component';
+import {HikingService} from './shared/hiking-service/hiking.service';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpModule} from '@angular/http';
+import { CreateHikingComponent } from './create-hiking/create-hiking.component';
+import { CardUserComponent } from './shared/card-user/card-user.component';
 
 @NgModule({
   declarations: [
@@ -24,15 +29,19 @@ import { FormHikingComponent } from './shared/form-hiking/form-hiking.component'
     EditHikingComponent,
     FormHikingComponent,
     CardHikingComponent,
-    FormSearchHikingComponent
+    FormSearchHikingComponent,
+    CreateHikingComponent,
+    CardUserComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpModule,
+    HttpClientModule,
     APP_ROUTES
   ],
-  providers: [],
+  providers: [HikingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

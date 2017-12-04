@@ -25,7 +25,4 @@ export class CardHikingComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  showHiking() {}
-
 }

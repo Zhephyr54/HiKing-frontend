@@ -17,50 +17,54 @@ export class HomeComponent implements OnInit {
     const user: User = {
       email: 'osef',
       firstname: 'osef',
-      lastname: 'osef'
+      lastname: 'osef',
+      address: 'osef'
     };
     this._hikings = [{
+      id: '1',
       date: '01-12-17',
       guide: user,
       startLocalization: 'Nancy',
       endLocalization: 'Nancy',
-      duration: '2h',
+      duration: 2,
       distance: 15,
       complexity: 'Facile',
       description: 'On va s\'éclater ! Super rando en prévision :p.',
       personMinNumber: 5,
       personMaxNumber: 10,
       persons: [user, user, user],
-      priceType: 'Euro',
-      price: 20
+      priceType: 'Libre'
     },
       {
+        id: '2',
         date: '02-12-17',
         guide: user,
         startLocalization: 'Lyon',
         endLocalization: 'Lyon',
-        duration: '2h',
+        duration: 2,
         distance: 30,
         complexity: 'Facile',
         description: 'On va s\'éclater ! Super rando en prévision :p.',
         personMinNumber: 5,
         personMaxNumber: 10,
         persons: [user, user, user],
-        priceType: 'Euro',
+        priceType: 'Fixe',
         price: 30
-      }, {
+      },
+      {
+        id: '3',
         date: '03-12-17',
         guide: user,
         startLocalization: 'Metz',
         endLocalization: 'Metz',
-        duration: '2h',
+        duration: 2,
         distance: 25,
         complexity: 'Facile',
         description: 'On va s\'éclater ! Super rando en prévision :p.',
         personMinNumber: 5,
         personMaxNumber: 10,
         persons: [user, user, user],
-        priceType: 'Euro',
+        priceType: 'Fixe',
         price: 10
       }
     ];
@@ -79,7 +83,7 @@ export class HomeComponent implements OnInit {
   /**
    * Returns private property _model
    *
-   * @returns {any}
+   * @returns {Hiking}
    */
   get model(): any {
     return this._model;

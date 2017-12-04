@@ -9,7 +9,7 @@ import {isUndefined} from 'util';
   templateUrl: './form-hiking.component.html',
   styleUrls: ['./form-hiking.component.css']
 })
-export class FormHikingComponent implements OnInit, OnChanges{
+export class FormHikingComponent implements OnInit, OnChanges {
 
   // TODO Revoir le binding + message d'erreurs html
 
@@ -17,7 +17,7 @@ export class FormHikingComponent implements OnInit, OnChanges{
   private _isUpdateMode: boolean;
 
   // property to store model value
-  private _hikingModel: Hiking;
+  private _model: Hiking;
 
   // property to store cancel$ value
   private _cancel$: EventEmitter<any>;
@@ -28,8 +28,18 @@ export class FormHikingComponent implements OnInit, OnChanges{
   // property to store form value
   private _form: FormGroup;
 
-  // property binded to the choice of user concerning the hiking pricing (free or fixed)
-  private _priceType;
+  // array containing the different possible values for complexity
+  private _complexityValues: string[] = [
+    'Débutant',
+    'Confirmé',
+    'Expert'
+  ];
+
+  // array containing the different possible values for priceType
+  private _priceTypeValues: string[] = [
+    'Libre',
+    'Fixe'
+  ];
 
   constructor() {
     this._submit$ = new EventEmitter();
@@ -37,21 +47,13 @@ export class FormHikingComponent implements OnInit, OnChanges{
     this._form = this._buildForm();
   }
 
-  get priceType() {
-    return this._priceType;
-  }
-
-  set priceType(value) {
-    this._priceType = value;
-  }
-
   @Input()
-  set hikingModel(hikingModel: Hiking) {
-    this._hikingModel = hikingModel;
+  set model(hikingModel: any) {
+    this._model = hikingModel;
   }
 
-  get hikingModel(): Hiking {
-    return this._hikingModel;
+  get model(): any {
+    return this._model;
   }
 
   get form(): FormGroup {
@@ -62,20 +64,18 @@ export class FormHikingComponent implements OnInit, OnChanges{
     return this._isUpdateMode;
   }
 
-  /**
-   * Returns private property _cancel$
-   *
-   * @returns {EventEmitter<any>}
-   */
-  @Output('cancel')
-  get cancel$(): EventEmitter<any> {
-    return this._cancel$;
+  get priceTypeValues(): string[] {
+    return this._priceTypeValues;
+  }
+
+  get complexityValues(): string[] {
+    return this._complexityValues;
   }
 
   /**
    * Returns private property _submit$
    *
-   * @returns {EventEmitter<any>}
+   * @returns {EventEmitter<Hiking>}
    */
   @Output('submit')
   get submit$(): EventEmitter<any> {
@@ -85,21 +85,26 @@ export class FormHikingComponent implements OnInit, OnChanges{
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  /**
+   * Function to handle component update
+   *
+   * @param record
+   */
+  ngOnChanges(record) {
+    if (record.model && record.model.currentValue) {
+      this._model = record.model.currentValue;
+      this._isUpdateMode = true;
+      this._form.patchValue(this._model);
+    } else {
+      this._isUpdateMode = false;
+    }
   }
 
   /**
-   * Function to emit event to cancel process
+   * Function to emit event to submit form and hiking
    */
-  cancel() {
-    this._cancel$.emit();
-  }
-
-  /**
-   * Function to emit event to submit form and person
-   */
-  submit(person: any) {
-    this._submit$.emit(person);
+  submit(hiking: any) {
+    this._submit$.emit(hiking);
   }
 
   /**
@@ -111,6 +116,7 @@ export class FormHikingComponent implements OnInit, OnChanges{
    */
   private _buildForm(): FormGroup {
     return new FormGroup({
+      id: new FormControl(''),
       title: new FormControl(''),
       photo: new FormControl('https://randomuser.me/api/portraits/lego/6.jpg'),
       startLocalization: new FormControl('', Validators.required),
@@ -123,14 +129,14 @@ export class FormHikingComponent implements OnInit, OnChanges{
       ])),
       complexity: new FormControl('', Validators.required),
       description: new FormControl(''),
-      minPerson: new FormControl('', Validators.compose([
+      personMinNumber: new FormControl('', Validators.compose([
         Validators.required, Validators.min(1), Validators.pattern('\\d+')
       ])),
-      maxPerson: new FormControl('', Validators.compose([
+      personMaxNumber: new FormControl('', Validators.compose([
         Validators.required, Validators.min(1), Validators.pattern('\\d+')
       ])),
       priceType: new FormControl('', Validators.required),
-      price: new FormControl('', CustomValidators.priceConformToPriceType(isUndefined(this.priceType) ? ' ' : this.priceType))
+      price: new FormControl('')
     });
   }
 

@@ -8,7 +8,7 @@ export interface Hiking {
   guide: User;
   startLocalization: string;
   endLocalization: string;
-  duration: string;
+  duration: number;
   distance: number;
   complexity: string;
   description?: string;
@@ -16,5 +16,5 @@ export interface Hiking {
   personMaxNumber: number;
   persons: User[];
   priceType: string;
-  price: number;
+  price?: number;
 }
