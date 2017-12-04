@@ -1,5 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <div class="row">
+    <div class="center">
     <div class="col-xs-4">
       <div class="input-group">
         <input type="text" name="location" class="form-control" placeholder="Localisation" formControlName="localisation">
@@ -8,7 +9,7 @@
     </div>
     <div class="col-xs-4">
       <div class="input-group">
-        <input type="text" name="datestart" class="form-control" placeholder="Date de depart" formControlName="datestart">
+        <input type="text" name="datedepart" class="form-control" placeholder="Date de depart" formControlName="datedepart">
         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
       </div>
     </div>
@@ -16,6 +17,7 @@
       <div class="input-group">
         <button type="submit" [disabled]="!form.valid" class="btn btn-default">Rechercher</button>
       </div>
+    </div>
     </div>
   </div>
 </form>
