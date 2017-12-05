@@ -93,7 +93,7 @@ export class FormHikingComponent implements OnInit, OnChanges {
     if (record.model && record.model.currentValue) {
       this._model = record.model.currentValue;
       // if the price is set to nothing then the price typing is free
-      this._model['priceType'] = 'Fixe';
+      this._model['priceType'] = this._model.price ? 'Fixe' : 'Libre';
       this._isUpdateMode = true;
       this._form.patchValue(this._model);
     } else {
@@ -131,15 +131,15 @@ export class FormHikingComponent implements OnInit, OnChanges {
       endLocalization: new FormControl('', Validators.required),
       duration: new FormControl('', Validators.required),
       distance: new FormControl('', Validators.compose([
-        Validators.required, Validators.min(1), Validators.pattern('\\d+')
+        Validators.required, Validators.min(1), Validators.pattern('[0-9]+')
       ])),
       complexity: new FormControl('', Validators.required),
       description: new FormControl(''),
       personMinNumber: new FormControl('', Validators.compose([
-        Validators.required, Validators.min(1), Validators.pattern('\\d+')
+        Validators.required, Validators.min(1), Validators.pattern('[0-9]+')
       ])),
       personMaxNumber: new FormControl('', Validators.compose([
-        Validators.required, Validators.min(1), Validators.pattern('\\d+')
+        Validators.required, Validators.min(1)
       ])),
       priceType: new FormControl('', Validators.required),
       price: new FormControl('')

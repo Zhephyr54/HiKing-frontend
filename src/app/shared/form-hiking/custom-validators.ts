@@ -2,9 +2,6 @@ import {FormControl} from '@angular/forms';
 
 export class CustomValidators {
 
-
-  // TODO Revoir le validateur custom
-
   /**
    * Function to control that the price is conform to the priceType
    *
@@ -14,7 +11,7 @@ export class CustomValidators {
    */
   static priceConformToPriceType(control: FormControl) {
     // price regex
-    const regex = /^[1-9][0-9]*(,[0-9]{2})?$/
+    const regex = /^(\d+([.,][0-9]{0,2})?)$/
 
     return control.value.priceType === 'Libre' || (control.value.priceType === 'Fixe' && regex.test(control.value.price)) ? null : {
       priceConformToPriceType: true

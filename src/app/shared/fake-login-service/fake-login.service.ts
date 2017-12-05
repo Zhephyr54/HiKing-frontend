@@ -13,10 +13,15 @@ export class FakeLoginService {
   // Property value to store the supposed logged in user
   private _user: User;
 
-  constructor(private _userService : UserService) {
+  constructor(private _userService: UserService) {
+    const user_firstname = 'Jérémy';
+
     this._userService.fetch()
       .subscribe((users: User[]) =>
-        this._user = users[Math.floor(Math.random() * users.length)]);
+        // random user
+        // this._user = users[Math.floor(Math.random() * users.length)]);
+        this._user = users.filter(user => user.firstname === user.firstname)[0]
+      );
   }
 
   /**
