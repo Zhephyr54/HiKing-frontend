@@ -8,8 +8,8 @@
       <li class="list-group-item">Arrivée : {{hiking.endLocalization}}</li>
       <li class="list-group-item">Distance : {{hiking.distance}} Km</li>
       <li class="list-group-item">Date : {{hiking.date}}</li>
-      <li *ngIf="hiking.priceType === 'Fixe'" class="list-group-item">Prix : {{hiking.price}} &euro;</li>
-      <li *ngIf="hiking.priceType === 'Libre'" class="list-group-item">Prix : Libre</li>
+      <li *ngIf="hiking.price === 0" class="list-group-item">Prix : Gratuit</li>
+      <li *ngIf="hiking.price !== 0" class="list-group-item">Prix : {{hiking.price}}</li>
     </ul>
     <div class="card-block text-center">
       <button [routerLink]="['/hiking', hiking.id]" type="button" class="btn btn-primary">Consulter</button>
