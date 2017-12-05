@@ -22,6 +22,17 @@ export class UserService {
   }
 
   /**
+   * Function to return list of users
+   *
+   * @returns {Observable<any[]>}
+   */
+  fetch(): Observable<any[] | ArrayBuffer> {
+    return this._http.get(this._backendURL.allUsers, this._options())
+      .filter(_ => !!_)
+      .defaultIfEmpty([]);
+  }
+
+  /**
    * Function to return one user for current id
    *
    * @param id
@@ -31,6 +42,7 @@ export class UserService {
   fetchOne(id: string): Observable<any> {
     return this._http.get(this._backendURL.oneUsers.replace(':id', id), this._options());
   }
+
 
   /**
    * Function to return request options

@@ -12,7 +12,7 @@
 
   <p class="alert alert-success">Guide</p>
 
-  <app-card-user [user]="guide"></app-card-user>
+  <app-card-user *ngIf="guide" [user]="guide"></app-card-user>
 
   <p class="alert alert-success">Itinéraire</p>
 
@@ -64,13 +64,28 @@
   </table>
 
   <div class="row text-center center-block">
-    <!-- if hiking is no full -->
-    <div *ngIf="nbRemainingSpot > 0">
-      <button (click)="signUp()" class="btn btn-primary">Participer</button>
+
+    <!-- if user is not guide or already sign in -->
+    <div *ngIf="!isGuide && !isAlreadySignIn">
+      <!-- if hiking is not full -->
+      <div *ngIf="nbRemainingSpot > 0">
+        <button (click)="subscribe()" class="btn btn-primary">Participer</button>
+      </div>
+      <!-- else -->
+      <div *ngIf="nbRemainingSpot <= 0">
+        <p>Cette randonnée est complète.</p>
+      </div>
     </div>
-    <!-- else -->
-    <div *ngIf="nbRemainingSpot == 0">
-      <p>Cette randonnée est complète.</p>
+
+    <div *ngIf="isGuide">
+        <button (click)="goToEditRoute()" class="btn btn-primary">Modifier</button>
+        <button (click)="subscribe()" class="btn btn-primary">Supprimer</button>
     </div>
+
+    <div *ngIf="isAlreadySignIn">
+      <button (click)="unsubscribe()" class="btn btn-primary">Se désinscrire</button>
+    </div>
+
+
   </div>
 </div>

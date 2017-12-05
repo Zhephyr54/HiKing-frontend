@@ -19,6 +19,7 @@ import {HttpModule} from '@angular/http';
 import { CreateHikingComponent } from './create-hiking/create-hiking.component';
 import { CardUserComponent } from './shared/card-user/card-user.component';
 import {UserService} from './shared/user-service/user.service';
+import {FakeLoginService} from './shared/fake-login-service/fake-login.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,11 @@ import {UserService} from './shared/user-service/user.service';
     HttpClientModule,
     APP_ROUTES
   ],
-  providers: [HikingService, UserService],
+  providers: [
+    HikingService,
+    UserService,
+    FakeLoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

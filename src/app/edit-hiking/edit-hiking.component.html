@@ -1,1 +1,2 @@
-<app-form-hiking (submit)="update($event)" [model]="hiking"></app-form-hiking>
+<app-form-hiking *ngIf="isGuide" (submit)="update($event)" [model]="hiking"></app-form-hiking>
+<div *ngIf="!isGuide" class="alert alert-danger text-center">Vous n'êtes pas autorisé à modifier cette randonnée.</div>

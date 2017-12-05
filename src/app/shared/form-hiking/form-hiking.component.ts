@@ -122,6 +122,8 @@ export class FormHikingComponent implements OnInit, OnChanges {
    */
   private _buildForm(): FormGroup {
     return new FormGroup({
+      id: new FormControl(''),
+      guide_id: new FormControl(''),
       title: new FormControl(''),
       photo: new FormControl('https://randomuser.me/api/portraits/lego/6.jpg'),
       date: new FormControl('', Validators.required),

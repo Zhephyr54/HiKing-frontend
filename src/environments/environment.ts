@@ -12,7 +12,8 @@ export const environment = {
     endpoints: {
       oneHikings: '/api/hikings/:id',
       allHikings: '/api/hikings',
-      oneUsers:   '/api/users/:id'
+      oneUsers:   '/api/users/:id',
+      allUsers:   '/api/users'
     }
   }
 };
