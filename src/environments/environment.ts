@@ -11,7 +11,8 @@ export const environment = {
     port: '9000',
     endpoints: {
       oneHikings: '/api/hikings/:id',
-      allHikings: '/api/hikings'
+      allHikings: '/api/hikings',
+      oneUsers:   '/api/users/:id'
     }
   }
 };

@@ -15,6 +15,8 @@ export class CreateHikingComponent implements OnInit {
   }
 
   create(hiking: Hiking) {
+    hiking.guide_id = '5a26b283c31cdb3907f6f66e';
+    console.log(hiking);
     this._hikingService.create(hiking)
       .subscribe();
   }

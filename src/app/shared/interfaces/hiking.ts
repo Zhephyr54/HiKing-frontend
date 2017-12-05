@@ -1,11 +1,10 @@
-import {User} from './user';
 
 export interface Hiking {
   id?: string;
   title?: string;
   photo?: string;
   date: string;
-  guide: User;
+  guide_id: string;
   startLocalization: string;
   endLocalization: string;
   duration: string;
@@ -14,6 +13,6 @@ export interface Hiking {
   description?: string;
   personMinNumber: number;
   personMaxNumber: number;
-  persons: User[];
+  hikers_id: string[];
   price?: number;
 }

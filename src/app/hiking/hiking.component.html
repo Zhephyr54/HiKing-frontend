@@ -12,7 +12,7 @@
 
   <p class="alert alert-success">Guide</p>
 
-  <app-card-user [user]="hiking.guide"></app-card-user>
+  <app-card-user [user]="guide"></app-card-user>
 
   <p class="alert alert-success">Itinéraire</p>
 
@@ -57,12 +57,8 @@
     </tr>
     <tr>
       <th scope="row">Prix de participation</th>
-      <div *ngIf="hiking.price">
-        <td>{{hiking.price}} &euro;</td>
-      </div>
-      <div *ngIf="!hiking.price">
-        <td>Libre</td>
-      </div>
+      <td *ngIf="hiking.price">{{hiking.price}} &euro;</td>
+      <td *ngIf="!hiking.price">Libre</td>
     </tr>
     </tbody>
   </table>

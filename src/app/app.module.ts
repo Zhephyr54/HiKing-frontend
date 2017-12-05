@@ -18,6 +18,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 import { CreateHikingComponent } from './create-hiking/create-hiking.component';
 import { CardUserComponent } from './shared/card-user/card-user.component';
+import {UserService} from './shared/user-service/user.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { CardUserComponent } from './shared/card-user/card-user.component';
     HttpClientModule,
     APP_ROUTES
   ],
-  providers: [HikingService],
+  providers: [HikingService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

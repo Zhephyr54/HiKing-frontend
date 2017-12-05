@@ -22,7 +22,7 @@ export class EditHikingComponent implements OnInit {
     this._hiking = {
         id: '1',
         date: '02-08-17',
-        guide: user,
+        guide_id: '',
         startLocalization: 'Nancy',
         endLocalization: 'Paris',
         duration: '2 heures',
@@ -31,7 +31,7 @@ export class EditHikingComponent implements OnInit {
         description: 'On va s\'éclater ! Super rando en prévision :p.',
         personMinNumber: 5,
         personMaxNumber: 10,
-        persons: [user, user, user],
+        hikers_id: [],
         price: 15
       };
   }
