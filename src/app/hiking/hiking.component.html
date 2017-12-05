@@ -9,9 +9,12 @@
   <img class="img-rounded center-block" *ngIf="hiking.photo" width="350" src="{{ hiking.photo }}"/>
   <img class="img-rounded center-block" *ngIf="!hiking.photo" width="350" src="https://media.deseretdigital.com/file/2187773984?crop=top:0|left:0|width:940|height:500|gravity:Center&quality=55&interlace=none&resize=width:940&order=resize,crop&c=14&a=8e1c7dfe"/>
 
+<<<<<<< HEAD
   <h4>Guide</h4>
   <hr class="separator">
-  <app-card-user [user]="guide"></app-card-user>
+
+  <app-card-user *ngIf="guide" [user]="guide"></app-card-user>
+
 
   <div class="row">
 
@@ -75,14 +78,29 @@
   </div>
 
   <div class="row text-center center-block">
-    <!-- if hiking is no full -->
-    <div *ngIf="nbRemainingSpot > 0">
-      <button (click)="signUp()" class="btn btn-primary">Participer</button>
+
+    <!-- if user is not guide or already sign in -->
+    <div *ngIf="!isGuide && !isAlreadySignIn">
+      <!-- if hiking is not full -->
+      <div *ngIf="nbRemainingSpot > 0">
+        <button (click)="subscribe()" class="btn btn-primary">Participer</button>
+      </div>
+      <!-- else -->
+      <div *ngIf="nbRemainingSpot <= 0">
+        <p>Cette randonnée est complète.</p>
+      </div>
     </div>
-    <!-- else -->
-    <div *ngIf="nbRemainingSpot == 0">
-      <p>Cette randonnée est complète.</p>
+
+    <div *ngIf="isGuide">
+        <button (click)="goToEditRoute()" class="btn btn-primary">Modifier</button>
+        <button (click)="subscribe()" class="btn btn-primary">Supprimer</button>
     </div>
+
+    <div *ngIf="isAlreadySignIn">
+      <button (click)="unsubscribe()" class="btn btn-primary">Se désinscrire</button>
+    </div>
+
+
   </div>
 </div>
 </div>

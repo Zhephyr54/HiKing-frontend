@@ -10,7 +10,7 @@ const ROUTES: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'hiking/:id', component: HikingComponent },
-  { path: 'edit/hiking', component: EditHikingComponent},
+  { path: 'edit/hiking/:id', component: EditHikingComponent},
   { path: 'create/hiking', component: CreateHikingComponent},
 
   // TODO faire un component 404
