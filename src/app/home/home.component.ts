@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Hiking } from '../shared/interfaces/hiking';
 import {User} from '../shared/interfaces/user';
+import {HikingService} from '../shared/hiking-service/hiking.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,58 +15,7 @@ export class HomeComponent implements OnInit {
 
   private _model: any;
 
-  constructor() {
-    const user: User = {
-      email: 'osef',
-      firstname: 'osef',
-      lastname: 'osef',
-      address: 'osef'
-    };
-    this._hikings = [{
-      id: '1',
-      date: '01-12-17',
-      guide: user,
-      startLocalization: 'Nancy',
-      endLocalization: 'Nancy',
-      duration: '2 heures',
-      distance: 15,
-      complexity: 'Facile',
-      description: 'On va s\'éclater ! Super rando en prévision :p.',
-      personMinNumber: 5,
-      personMaxNumber: 10,
-      persons: [user, user, user],
-    },
-      {
-        id: '2',
-        date: '02-12-17',
-        guide: user,
-        startLocalization: 'Lyon',
-        endLocalization: 'Lyon',
-        duration: '2 heures',
-        distance: 30,
-        complexity: 'Facile',
-        description: 'On va s\'éclater ! Super rando en prévision :p.',
-        personMinNumber: 5,
-        personMaxNumber: 10,
-        persons: [user, user, user],
-        price: 30
-      },
-      {
-        id: '3',
-        date: '03-12-17',
-        guide: user,
-        startLocalization: 'Metz',
-        endLocalization: 'Metz',
-        duration: '2 heures',
-        distance: 25,
-        complexity: 'Facile',
-        description: 'On va s\'éclater ! Super rando en prévision :p.',
-        personMinNumber: 5,
-        personMaxNumber: 10,
-        persons: [user, user, user],
-        price: 10
-      }
-    ];
+  constructor(private _hikingService: HikingService, private _route: ActivatedRoute, private _router: Router) {
   }
 
   get hikings(): Hiking[] {
@@ -88,6 +39,16 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
+    this._hikingService
+      .fetch()
+      .subscribe((hiking: Hiking[]) => this._hikings = hiking.slice(0, 6) );
   }
+
+  /**
+   *
+   * this._peopleService
+   .fetch()
+   .subscribe((people: any[]) => this._people = people);
+   */
 
 }
