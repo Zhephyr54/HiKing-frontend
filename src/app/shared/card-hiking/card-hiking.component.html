@@ -1,6 +1,6 @@
 <div class="col-sm-4">
   <div class="thumbnail">
-  <img class="card-img-top" src="https://media.deseretdigital.com/file/2187773984?crop=top:0|left:0|width:940|height:500|gravity:Center&quality=55&interlace=none&resize=width:940&order=resize,crop&c=14&a=8e1c7dfe" alt="Card image cap">
+  <img class="card-img-top" src="{{hiking.photo}}" alt="Card image cap">
     <div class="caption">
       <h3>{{hiking.title}}</h3>
     <ul class="list-group">
@@ -8,8 +8,8 @@
       <li class="list-group-item">Arrivée : {{hiking.endLocalization}}</li>
       <li class="list-group-item">Distance : {{hiking.distance}} Km</li>
       <li class="list-group-item">Date : {{hiking.date}}</li>
-      <li *ngIf="hiking.price === 0" class="list-group-item">Prix : Gratuit</li>
-      <li *ngIf="hiking.price !== 0" class="list-group-item">Prix : {{hiking.price}}</li>
+      <li *ngIf="hiking.price" class="list-group-item">Prix : {{hiking.price}} &euro;</li>
+      <li *ngIf="!hiking.price" class="list-group-item">Prix : Libre</li>
     </ul>
     <div class="card-block text-center">
       <button [routerLink]="['/hiking', hiking.id]" type="button" class="btn btn-primary">Consulter</button>
