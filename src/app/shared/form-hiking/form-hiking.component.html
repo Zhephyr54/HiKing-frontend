@@ -29,14 +29,11 @@
       </span>
     </div>
 
-    <div class="form-group required" [class.has-error]="form.get('duration').touched && (form.get('duration').hasError('required') || form.get('duration').hasError('min') || form.get('distance').hasError('pattern'))">
+    <div class="form-group required" [class.has-error]="form.get('duration').touched && form.get('duration').hasError('required')">
       <label class="control-label" for="duration">Durée</label>
-      <input formControlName="duration" type="number" class="form-control" id="duration" required>
+      <input formControlName="duration" type="text" class="form-control" id="duration" required>
       <span class="help-block" *ngIf="form.get('duration').touched && form.get('duration').hasError('required')">
         La durée est <strong>requise</strong>
-      </span>
-      <span class="help-block" *ngIf="form.get('duration').touched && (form.get('duration').hasError('min') || form.get('duration').hasError('pattern'))">
-        La durée doit être un nombre entier positif non nul
       </span>
     </div>
 

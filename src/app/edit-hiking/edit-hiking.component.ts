@@ -25,14 +25,13 @@ export class EditHikingComponent implements OnInit {
         guide: user,
         startLocalization: 'Nancy',
         endLocalization: 'Paris',
-        duration: 2,
+        duration: '2 heures',
         distance: 20,
         complexity: 'Expert',
         description: 'On va s\'éclater ! Super rando en prévision :p.',
         personMinNumber: 5,
         personMaxNumber: 10,
         persons: [user, user, user],
-        priceType: 'Fixe',
         price: 15
       };
   }
@@ -54,6 +53,7 @@ export class EditHikingComponent implements OnInit {
    * @param hiking
    */
   update(hiking: Hiking) {
+    console.log(hiking);
     this._hikingService.update(hiking)
       .subscribe();
   }

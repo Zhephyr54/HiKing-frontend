@@ -57,7 +57,12 @@
     </tr>
     <tr>
       <th scope="row">Prix de participation</th>
-      <td>{{hiking.price}} &euro;</td>
+      <div *ngIf="hiking.price">
+        <td>{{hiking.price}} &euro;</td>
+      </div>
+      <div *ngIf="!hiking.price">
+        <td>Libre</td>
+      </div>
     </tr>
     </tbody>
   </table>

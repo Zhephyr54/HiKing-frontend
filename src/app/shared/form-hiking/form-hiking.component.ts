@@ -11,8 +11,6 @@ import {isUndefined} from 'util';
 })
 export class FormHikingComponent implements OnInit, OnChanges {
 
-  // TODO Revoir le binding + message d'erreurs html
-
   // property to store update mode flag
   private _isUpdateMode: boolean;
 
@@ -72,6 +70,7 @@ export class FormHikingComponent implements OnInit, OnChanges {
     return this._complexityValues;
   }
 
+
   /**
    * Returns private property _submit$
    *
@@ -93,6 +92,8 @@ export class FormHikingComponent implements OnInit, OnChanges {
   ngOnChanges(record) {
     if (record.model && record.model.currentValue) {
       this._model = record.model.currentValue;
+      // if the price is set to nothing then the price typing is free
+      this._model['priceType'] = 'Fixe';
       this._isUpdateMode = true;
       this._form.patchValue(this._model);
     } else {
@@ -103,8 +104,13 @@ export class FormHikingComponent implements OnInit, OnChanges {
   /**
    * Function to emit event to submit form and hiking
    */
-  submit(hiking: any) {
-    this._submit$.emit(hiking);
+  submit(form: any) {
+    // if the price typing is set at free then clean the price
+    if (form.priceType === 'Libre') {
+      delete form.price;
+    }
+    delete form.priceType;
+    this._submit$.emit(form);
   }
 
   /**
@@ -121,9 +127,7 @@ export class FormHikingComponent implements OnInit, OnChanges {
       photo: new FormControl('https://randomuser.me/api/portraits/lego/6.jpg'),
       startLocalization: new FormControl('', Validators.required),
       endLocalization: new FormControl('', Validators.required),
-      duration: new FormControl('', Validators.compose([
-        Validators.required, Validators.min(1), Validators.pattern('\\d+')
-      ])),
+      duration: new FormControl('', Validators.required),
       distance: new FormControl('', Validators.compose([
         Validators.required, Validators.min(1), Validators.pattern('\\d+')
       ])),

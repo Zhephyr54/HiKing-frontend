@@ -26,14 +26,13 @@ export class HomeComponent implements OnInit {
       guide: user,
       startLocalization: 'Nancy',
       endLocalization: 'Nancy',
-      duration: 2,
+      duration: '2 heures',
       distance: 15,
       complexity: 'Facile',
       description: 'On va s\'éclater ! Super rando en prévision :p.',
       personMinNumber: 5,
       personMaxNumber: 10,
       persons: [user, user, user],
-      priceType: 'Libre'
     },
       {
         id: '2',
@@ -41,14 +40,13 @@ export class HomeComponent implements OnInit {
         guide: user,
         startLocalization: 'Lyon',
         endLocalization: 'Lyon',
-        duration: 2,
+        duration: '2 heures',
         distance: 30,
         complexity: 'Facile',
         description: 'On va s\'éclater ! Super rando en prévision :p.',
         personMinNumber: 5,
         personMaxNumber: 10,
         persons: [user, user, user],
-        priceType: 'Fixe',
         price: 30
       },
       {
@@ -57,14 +55,13 @@ export class HomeComponent implements OnInit {
         guide: user,
         startLocalization: 'Metz',
         endLocalization: 'Metz',
-        duration: 2,
+        duration: '2 heures',
         distance: 25,
         complexity: 'Facile',
         description: 'On va s\'éclater ! Super rando en prévision :p.',
         personMinNumber: 5,
         personMaxNumber: 10,
         persons: [user, user, user],
-        priceType: 'Fixe',
         price: 10
       }
     ];
