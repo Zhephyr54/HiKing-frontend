@@ -1,22 +1,28 @@
+<div class="panel panel-primary" style="margin:20px;">
+  <div class="panel-heading" *ngIf="hiking.title">
+    {{hiking.title}}
+    <span class="pull-right">Le {{hiking.date}}</span>
+  </div>
+  <div class="panel-body">
 <div *ngIf="hiking">
 
-  <img *ngIf="hiking.photo" width="300" src="{{ hiking.photo }}"/>
-  <img *ngIf="!hiking.photo" width="300" src="https://media.deseretdigital.com/file/2187773984?crop=top:0|left:0|width:940|height:500|gravity:Center&quality=55&interlace=none&resize=width:940&order=resize,crop&c=14&a=8e1c7dfe"/>
+  <img class="img-rounded center-block" *ngIf="hiking.photo" width="350" src="{{ hiking.photo }}"/>
+  <img class="img-rounded center-block" *ngIf="!hiking.photo" width="350" src="https://media.deseretdigital.com/file/2187773984?crop=top:0|left:0|width:940|height:500|gravity:Center&quality=55&interlace=none&resize=width:940&order=resize,crop&c=14&a=8e1c7dfe"/>
 
 
-  <div *ngIf="hiking.title">
-    <h2>{{hiking.title}}</h2>
-  </div>
-
-  <p>Le {{hiking.date}}</p>
-
-  <p class="alert alert-success">Guide</p>
+  <h4>Guide</h4>
+  <hr class="separator">
 
   <app-card-user *ngIf="guide" [user]="guide"></app-card-user>
 
-  <p class="alert alert-success">Itinéraire</p>
 
-  <table class="table">
+  <div class="row">
+
+    <div class="col-xs-6">
+  <h4>Itinéraire</h4>
+  <hr class="separator">
+
+  <table class="table borderless">
     <tbody>
     <tr>
       <th scope="row">Lieu de départ</th>
@@ -38,14 +44,20 @@
       <th scope="row">Difficulté</th>
       <td>{{hiking.complexity}}</td>
     </tr>
+    <tr>
+      <th scope="row">Description</th>
+      <td>{{hiking.description}}</td>
+    </tr>
     </tbody>
   </table>
 
-  <p>{{hiking.description}}</p>
+    </div>
+    <div class="col-xs-6">
 
-  <p class="alert alert-success">Modalités</p>
+  <h4>Modalités</h4>
+  <hr class="separator">
 
-  <table class="table">
+  <table class="table borderless">
     <tbody>
     <tr>
       <th scope="row">Nombre de personnes</th>
@@ -62,6 +74,8 @@
     </tr>
     </tbody>
   </table>
+    </div>
+  </div>
 
   <div class="row text-center center-block">
 
@@ -88,4 +102,6 @@
 
 
   </div>
+</div>
+</div>
 </div>
