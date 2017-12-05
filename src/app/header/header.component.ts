@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {User} from '../shared/interfaces/user';
+import {FakeLoginService} from '../shared/fake-login-service/fake-login.service';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +10,16 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() {
+  private _user: User;
+
+  constructor(private _fakeLoginService: FakeLoginService) {
   }
 
   ngOnInit() {
+  }
+
+  get userLog(): User {
+    return this._fakeLoginService.getUserLoggedIn();
   }
 
 }
