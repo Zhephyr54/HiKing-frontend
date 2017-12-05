@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Hiking} from '../interfaces/hiking';
-
+import {ActivatedRoute, Router} from '@angular/router';
+import {HikingService} from '../hiking-service/hiking.service';
 
 @Component({
   selector: 'app-card-hiking',
@@ -12,7 +13,7 @@ export class CardHikingComponent implements OnInit {
   // private property to store hiking value
   private _hiking: Hiking;
 
-  constructor() { }
+  constructor(private _hikingService: HikingService, private _route: ActivatedRoute, private _router: Router) {  }
 
   get hiking(): Hiking {
     return this._hiking;
@@ -24,5 +25,11 @@ export class CardHikingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._route.params
+      .filter(params => !!params['id'])
+      .flatMap(params => this._hikingService.fetchOne(params['id']))
+      .subscribe((hiking: Hiking) => {
+        this._hiking = hiking;
+      });
   }
 }

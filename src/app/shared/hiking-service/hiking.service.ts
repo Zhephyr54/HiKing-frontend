@@ -34,6 +34,10 @@ export class HikingService {
     return this._http.get(this._backendURL.oneHikings.replace(':id', id), this._options());
   }
 
+
+  fetch(): Observable<any> {
+    return this._http.get(this._backendURL.allHikings, this._options());
+  }
   /**
    * Function to create a new hiking
    *
