@@ -20,7 +20,7 @@ export class FakeLoginService {
       .subscribe((users: User[]) =>
         // random user
         // this._user = users[Math.floor(Math.random() * users.length)]);
-        this._user = users.filter(user => user.firstname === user.firstname)[0]
+        this._user = users.filter(user => user.firstname === user_firstname)[0]
       );
   }
 
