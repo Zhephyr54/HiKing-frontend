@@ -20,6 +20,7 @@ import { CreateHikingComponent } from './create-hiking/create-hiking.component';
 import { CardUserComponent } from './shared/card-user/card-user.component';
 import {UserService} from './shared/user-service/user.service';
 import {FakeLoginService} from './shared/fake-login-service/fake-login.service';
+import { NotFound404Component } from './not-found-404/not-found-404.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {FakeLoginService} from './shared/fake-login-service/fake-login.service';
     CardHikingComponent,
     FormSearchHikingComponent,
     CreateHikingComponent,
-    CardUserComponent
+    CardUserComponent,
+    NotFound404Component
   ],
   imports: [
     BrowserModule,

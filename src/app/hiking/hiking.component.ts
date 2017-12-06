@@ -29,7 +29,7 @@ export class HikingComponent implements OnInit {
   private _isGuide: boolean;
 
   // Indicates if the current logged in user is already signed in for this hiking
-  private _isAlreadySignIn: boolean;
+  private _isAlreadySubscribed: boolean;
 
   constructor(private _hikingService: HikingService,
               private _route: ActivatedRoute,
@@ -59,7 +59,7 @@ export class HikingComponent implements OnInit {
     this._nbRemainingSpot = this._hiking.personMaxNumber - this._hiking.hikers_id.length;
 
     const user_id = this._fakeLoginService.getUserLoggedIn().id;
-    this._isAlreadySignIn = this._hiking.hikers_id.indexOf(user_id) > -1;
+    this._isAlreadySubscribed = this._hiking.hikers_id.indexOf(user_id) > -1;
     this._isGuide = this._hiking.guide_id === user_id;
   }
 
@@ -75,8 +75,8 @@ export class HikingComponent implements OnInit {
     return this._nbRemainingSpot;
   }
 
-  get isAlreadySignIn(): boolean {
-    return this._isAlreadySignIn;
+  get isAlreadySubscribed(): boolean {
+    return this._isAlreadySubscribed;
   }
 
   get isGuide(): boolean {
@@ -90,7 +90,7 @@ export class HikingComponent implements OnInit {
   subscribe() {
     const user_id = this._fakeLoginService.getUserLoggedIn().id;
     // if user isn't already sign in for this hiking and isn't the guide
-    if (!this._isAlreadySignIn && !this._isGuide) {
+    if (!this._isAlreadySubscribed && !this._isGuide) {
       this._hiking.hikers_id.push(user_id);
       this._hikingService.update(this._hiking)
         .subscribe((hiking: Hiking) => this._hiking = this._hiking);
@@ -105,7 +105,7 @@ export class HikingComponent implements OnInit {
   unsubscribe() {
     const user_id = this._fakeLoginService.getUserLoggedIn().id;
     // if user is already sign in for this hiking and isn't the guide
-    if (this._isAlreadySignIn && !this._isGuide) {
+    if (this._isAlreadySubscribed && !this._isGuide) {
       this._hiking.hikers_id = this._hiking.hikers_id
         .filter(hiker_id => hiker_id !== user_id);
       this._hikingService.update(this._hiking)
@@ -119,5 +119,18 @@ export class HikingComponent implements OnInit {
    */
   goToEditRoute() {
     this._router.navigate(['/edit/hiking', this._hiking.id]);
+  }
+
+  /**
+   * Delete this hiking
+   */
+  delete() {
+    // if user is the guide
+    if (this._isGuide) {
+      this._hikingService.delete(this._hiking.id)
+        .subscribe(_ =>
+          this._router.navigate(['/home'])
+        );
+    }
   }
 }

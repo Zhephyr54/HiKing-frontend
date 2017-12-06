@@ -31,5 +31,4 @@ export class FakeLoginService {
   getUserLoggedIn(): User {
     return this._user;
   }
-
 }

@@ -80,7 +80,7 @@
   <div class="row text-center center-block">
 
     <!-- if user is not guide or already sign in -->
-    <div *ngIf="!isGuide && !isAlreadySignIn">
+    <div *ngIf="!isGuide && !isAlreadySubscribed">
       <!-- if hiking is not full -->
       <div *ngIf="nbRemainingSpot > 0">
         <button (click)="subscribe()" class="btn btn-primary">Participer</button>
@@ -93,13 +93,12 @@
 
     <div *ngIf="isGuide">
         <button (click)="goToEditRoute()" class="btn btn-primary">Modifier</button>
-        <button (click)="subscribe()" class="btn btn-primary">Supprimer</button>
+        <button (click)="delete()" class="btn btn-primary">Supprimer</button>
     </div>
 
-    <div *ngIf="isAlreadySignIn">
+    <div *ngIf="isAlreadySubscribed">
       <button (click)="unsubscribe()" class="btn btn-primary">Se désinscrire</button>
     </div>
-
 
   </div>
 </div>
