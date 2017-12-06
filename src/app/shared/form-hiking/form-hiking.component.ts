@@ -125,7 +125,7 @@ export class FormHikingComponent implements OnInit, OnChanges {
       id: new FormControl(''),
       guide_id: new FormControl(''),
       title: new FormControl(''),
-      photo: new FormControl('https://randomuser.me/api/portraits/lego/6.jpg'),
+      photo: new FormControl('https://media.deseretdigital.com/file/2187773984.jpeg'),
       date: new FormControl('', Validators.required),
       startLocalization: new FormControl('', Validators.required),
       endLocalization: new FormControl('', Validators.required),

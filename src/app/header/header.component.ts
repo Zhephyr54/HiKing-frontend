@@ -10,16 +10,13 @@ import {FakeLoginService} from '../shared/fake-login-service/fake-login.service'
 })
 export class HeaderComponent implements OnInit {
 
-  private _user: User;
-
   constructor(private _fakeLoginService: FakeLoginService) {
   }
 
   ngOnInit() {
   }
 
-  get userLog(): User {
+  get user(): User {
     return this._fakeLoginService.getUserLoggedIn();
   }
-
 }

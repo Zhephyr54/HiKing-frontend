@@ -19,9 +19,9 @@
     </ul>
 
     <div id="navbar" class="navbar-collapse collapse">
-      <form class="navbar-form navbar-right">
-        <h4><p class="text-primary">Bonjour {{userLog.firstname}} {{userLog.lastname}} !</p></h4>
-      </form>
+      <div *ngIf="user" class="navbar-form navbar-right">
+        <h4><p class="text-primary">Bonjour {{user.firstname}} {{user.lastname}} !</p></h4>
+      </div>
     </div><!--/.navbar-collapse -->
   </div>
 </nav>

@@ -1,4 +1,4 @@
-<div class="panel panel-primary" style="margin:20px;">
+<div *ngIf="hiking" class="panel panel-primary" style="margin:20px;">
   <div class="panel-heading" *ngIf="hiking.title">
     {{hiking.title}}
     <span class="pull-right">Le {{hiking.date}}</span>

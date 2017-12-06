@@ -58,6 +58,7 @@ export class EditHikingComponent implements OnInit {
    * @param hiking
    */
   update(hiking: Hiking) {
+    console.log(hiking);
     this._hikingService.update(hiking)
       .subscribe((hik: Hiking) => this._hiking = hik);
   }
